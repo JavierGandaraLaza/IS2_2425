@@ -6,43 +6,87 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MotocicletaTest {
 
+	private Vehiculo motocicleta;
+	
 	@Test
-    void testPrecioImpuestoMotocicleta() {
-        // Caso 1: Motocicleta con cilindrada <= 125
-        Motocicleta moto1 = new Motocicleta(1, "1234ABC", LocalDate.of(2020, 1, 1), TipoMotor.GASOLINA, 125);
-        assertEquals(8, moto1.precioImpuesto());
+    public void testMotocicletaCilindradaMenorOIgual125() {
+        motocicleta = new Motocicleta(1, "1111AAA", LocalDate.now().minusYears(37), TipoMotor.GASOLINA, 1);
+        assertTrue(motocicleta.precioImpuesto() == 0);
 
-        // Caso 2: Motocicleta con cilindrada entre 125 y 250
-        Motocicleta moto2 = new Motocicleta(2, "5678DEF", LocalDate.of(2015, 1, 1), TipoMotor.GASOLINA, 200);
-        assertEquals(15, moto2.precioImpuesto());
+        motocicleta = new Motocicleta(2, "1112BBB", LocalDate.now().minusYears(2), TipoMotor.HIBRIDO, 50);
+        assertTrue(motocicleta.precioImpuesto() == 2);
 
-        // Caso 3: Motocicleta con cilindrada entre 250 y 500
-        Motocicleta moto3 = new Motocicleta(3, "9101GHI", LocalDate.of(2010, 1, 1), TipoMotor.GASOLINA, 400);
-        assertEquals(30, moto3.precioImpuesto());
+        motocicleta = new Motocicleta(3, "1113CCC", LocalDate.now().minusYears(10), TipoMotor.ELECTRICO, 50);
+        assertTrue(motocicleta.precioImpuesto() == 2);
 
-        // Caso 4: Motocicleta con cilindrada entre 500 y 1000
-        Motocicleta moto4 = new Motocicleta(4, "1121JKL", LocalDate.of(2005, 1, 1), TipoMotor.GASOLINA, 800);
-        assertEquals(60, moto4.precioImpuesto());
+        motocicleta = new Motocicleta(4, "1114DDD", LocalDate.now(), TipoMotor.GAS, 75);
+        assertTrue(motocicleta.precioImpuesto() == 4);
 
-        // Caso 5: Motocicleta con cilindrada > 1000
-        Motocicleta moto5 = new Motocicleta(5, "3141MNO", LocalDate.of(2000, 1, 1), TipoMotor.GASOLINA, 1200);
-        assertEquals(120, moto5.precioImpuesto());
+        motocicleta = new Motocicleta(5, "1115EEE", LocalDate.now().minusYears(10), TipoMotor.GASOLINA, 125);
+        assertTrue(motocicleta.precioImpuesto() == 8);
+    }
+	
+	@Test
+    public void testMotocicletaCilindradaMenorOIgual250() {
+        motocicleta = new Motocicleta(6, "2222AAA", LocalDate.now().minusYears(37), TipoMotor.GAS, 126);
+        assertTrue(motocicleta.precioImpuesto() == 0);
 
-        // Caso 6: Motocicleta eléctrica (75% de bonificación)
-        Motocicleta moto6 = new Motocicleta(6, "5161PQR", LocalDate.of(2020, 1, 1), TipoMotor.ELECTRICO, 400);
-        assertEquals(7.5, moto6.precioImpuesto());
+        motocicleta = new Motocicleta(7, "2223BBB", LocalDate.now().minusYears(7), TipoMotor.HIBRIDO, 200);
+        assertTrue(motocicleta.precioImpuesto() == 15);
 
-        // Caso 7: Motocicleta híbrida (75% de bonificación durante los primeros 4 años)
-        Motocicleta moto7 = new Motocicleta(7, "7181STU", LocalDate.of(2022, 1, 1), TipoMotor.HIBRIDO, 400);
-        assertEquals(7.5, moto7.precioImpuesto());
+        motocicleta = new Motocicleta(8, "2224CCC", LocalDate.now(), TipoMotor.ELECTRICO, 200);
+        assertTrue(motocicleta.precioImpuesto() == 3.75);
 
-        // Caso 8: Motocicleta de gas (50% de bonificación durante el primer año)
-        Motocicleta moto8 = new Motocicleta(8, "9201VWX", LocalDate.of(2023, 1, 1), TipoMotor.GAS, 400);
-        assertEquals(15, moto8.precioImpuesto());
+        motocicleta = new Motocicleta(9, "2225DDD", LocalDate.now(), TipoMotor.GAS, 225);
+        assertTrue(motocicleta.precioImpuesto() == 7.5);
 
-        // Caso 9: Motocicleta con más de 25 años (100% de bonificación)
-        Motocicleta moto9 = new Motocicleta(9, "1221YZA", LocalDate.of(1990, 1, 1), TipoMotor.GASOLINA, 400);
-        assertEquals(0, moto9.precioImpuesto());
+        motocicleta = new Motocicleta(10, "2226EEE", LocalDate.now().minusYears(10), TipoMotor.GAS, 250);
+        assertTrue(motocicleta.precioImpuesto() == 15);
+    }
+	
+	@Test
+    public void testMotocicletaCilindradaMenorOIgual500() {
+        motocicleta = new Motocicleta(11, "3333AAA", LocalDate.now(), TipoMotor.DIESEL, 251);
+        assertTrue(motocicleta.precioImpuesto() == 30);
+
+        motocicleta = new Motocicleta(12, "3334BBB", LocalDate.now().minusYears(2), TipoMotor.HIBRIDO, 300);
+        assertTrue(motocicleta.precioImpuesto() == 7.5);
+
+        motocicleta = new Motocicleta(13, "3335CCC", LocalDate.now().minusYears(12), TipoMotor.HIBRIDO, 450);
+        assertTrue(motocicleta.precioImpuesto() == 30);
+
+        motocicleta = new Motocicleta(14, "3336DDD", LocalDate.now(), TipoMotor.GAS, 500);
+        assertTrue(motocicleta.precioImpuesto() == 15);
+    }
+	
+	@Test
+    public void testMotocicletaCilindradaMenorOIgual1000() {
+        motocicleta = new Motocicleta(15, "4444AAA", LocalDate.now().minusYears(26), TipoMotor.DIESEL, 501);
+        assertTrue(motocicleta.precioImpuesto() == 0);
+
+        motocicleta = new Motocicleta(16, "4445BBB", LocalDate.now(), TipoMotor.HIBRIDO, 750);
+        assertTrue(motocicleta.precioImpuesto() == 15);
+
+        motocicleta = new Motocicleta(17, "4446CCC", LocalDate.now().minusYears(30), TipoMotor.ELECTRICO, 650);
+        assertTrue(motocicleta.precioImpuesto() == 0);
+
+        motocicleta = new Motocicleta(18, "4447DDD", LocalDate.now(), TipoMotor.GAS, 1000);
+        assertTrue(motocicleta.precioImpuesto() == 30);
+        
+        motocicleta = new Motocicleta(19, "4448EEE", LocalDate.now().minusYears(1), TipoMotor.GAS, 1000);
+        assertTrue(motocicleta.precioImpuesto() == 60);
+    }
+	
+	@Test
+    public void testMotocicletaCilindradaMayor1000() {
+        motocicleta = new Motocicleta(20, "5555AAA", LocalDate.now().minusYears(20), TipoMotor.DIESEL, 1001);
+        assertTrue(motocicleta.precioImpuesto() == 120);
+
+        motocicleta = new Motocicleta(21, "5556BBB", LocalDate.now().minusYears(3), TipoMotor.HIBRIDO, 1500);
+        assertTrue(motocicleta.precioImpuesto() == 30);
+
+        motocicleta = new Motocicleta(22, "5557CCC", LocalDate.now(), TipoMotor.GAS, 1650);
+        assertTrue(motocicleta.precioImpuesto() == 60);
     }
 	
 }

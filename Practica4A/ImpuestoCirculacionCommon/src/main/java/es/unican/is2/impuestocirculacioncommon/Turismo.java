@@ -44,13 +44,13 @@ public class Turismo extends Vehiculo {
 	    LocalDate fechaActual = LocalDate.now();
 	    int añosAntiguedad = fechaActual.getYear() - getFechaMatriculacion().getYear();
 
-	    if (añosAntiguedad > 25) {
+	    if (añosAntiguedad >= 25) {
 	        tarifa *= 0; // 100% de bonificación
 	    } else if (getMotor() == TipoMotor.ELECTRICO) {
 	        tarifa *= 0.25; // 75% de bonificación
 	    } else if (getMotor() == TipoMotor.HIBRIDO && añosAntiguedad < 4) {
 	        tarifa *= 0.25; // 75% de bonificación durante los primeros 4 años
-	    } else if (getMotor() == TipoMotor.GAS && añosAntiguedad == 0) {
+	    } else if (getMotor() == TipoMotor.GAS && añosAntiguedad < 1) {
 	        tarifa *= 0.5; // 50% de bonificación durante el primer año
 	    }
 
