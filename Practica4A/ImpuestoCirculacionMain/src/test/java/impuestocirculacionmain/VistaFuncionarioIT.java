@@ -33,33 +33,29 @@ public class VistaFuncionarioIT {
     }
 
     @Test
-    public void testDNIIncorrectoVacio() {
-        // Simulo la interaccion con el botón de busqueda
+    public void testDNIVacio() {
         JButtonFixture searchButton = window.button("btnBuscar");
         searchButton.requireVisible(); 
         searchButton.click(); 
-        
-        // Verifico que los campos de texto tienen los valores esperados
+
         window.textBox("txtNombreContribuyente").requireText("DNI Incorrecto");
         window.textBox("txtTotalContribuyente").requireText("0");
     }
     
     @Test
-    public void testDNIFormatoIncorrecto() {
-    	// Introduzco un DNI no valido
+    public void testDNIIncorrecto() {
     	window.textBox("txtDniContribuyente").enterText("123444A");
 
         JButtonFixture searchButton = window.button("btnBuscar");
         searchButton.requireVisible(); 
         searchButton.click(); 
-        
-        // Verifico que los campos de texto tienen los valores esperados
+
         window.textBox("txtNombreContribuyente").requireText("DNI Incorrecto");
         window.textBox("txtTotalContribuyente").requireText("0");
     }
     
     @Test
-    public void testbusquedaContribuyente1() throws DataAccessException {
+    public void testContribuyente1() throws DataAccessException {
     	window.button("btnBuscar").requireText("Buscar");
 
     	window.textBox("txtDniContribuyente").enterText("11111111A");
@@ -68,12 +64,12 @@ public class VistaFuncionarioIT {
     	window.textBox("txtNombreContribuyente").requireText("Juan Perez Lopez");
     	window.textBox("txtTotalContribuyente").requireText("206,75");
         
-        String[] lst = {"1111AAA", "1111BBB", "1111CCC"};
-        assertThat(window.list("listMatriculasVehiculos").contents()).containsExactly(lst);
+        String[] matriculas = {"1111AAA", "1111BBB", "1111CCC"};
+        assertThat(window.list("listMatriculasVehiculos").contents()).containsExactly(matriculas);
     }
     
     @Test
-    public void testBusquedaContribuyente2() throws DataAccessException {
+    public void testContribuyente2() throws DataAccessException {
         window.button("btnBuscar").requireText("Buscar");
         
         window.textBox("txtDniContribuyente").enterText("22222222A");
@@ -82,26 +78,26 @@ public class VistaFuncionarioIT {
         window.textBox("txtNombreContribuyente").requireText("Ana Cuesta Ruiz");
         window.textBox("txtTotalContribuyente").requireText("223,00");
         
-        String[] lst = {"2222AAA"};
-        assertThat(window.list("listMatriculasVehiculos").contents()).containsExactly(lst);
+        String[] matriculas = {"2222AAA"};
+        assertThat(window.list("listMatriculasVehiculos").contents()).containsExactly(matriculas);
     }
  
     @Test
-    public void testBusquedaContribuyente3() throws DataAccessException {
+    public void testContribuyente3() throws DataAccessException {
         window.button("btnBuscar").requireText("Buscar");
         
         window.textBox("txtDniContribuyente").enterText("33333333A");
        
         window.button("btnBuscar").click();
         window.textBox("txtNombreContribuyente").requireText("Luis Ruiz Rivas");
-        window.textBox("txtTotalContribuyente").requireText("0,00"); // No tiene vehiculos
+        window.textBox("txtTotalContribuyente").requireText("0,00"); 
         
-        String[] lst = {};
-        assertThat(window.list("listMatriculasVehiculos").contents()).containsExactly(lst);
+        String[] matriculas = {};
+        assertThat(window.list("listMatriculasVehiculos").contents()).containsExactly(matriculas);
     }
 
     @Test
-    public void testBusquedaContribuyente4() throws DataAccessException {
+    public void testContribuyente4() throws DataAccessException {
         window.button("btnBuscar").requireText("Buscar");
         
         window.textBox("txtDniContribuyente").enterText("44444444A");
@@ -110,8 +106,8 @@ public class VistaFuncionarioIT {
         window.textBox("txtNombreContribuyente").requireText("Pepe Lopez Abascal");
         window.textBox("txtTotalContribuyente").requireText("253,00");
         
-        String[] lst = {"4444AAA", "4444BBB"};
-        assertThat(window.list("listMatriculasVehiculos").contents()).containsExactly(lst);
+        String[] matriculas = {"4444AAA", "4444BBB"};
+        assertThat(window.list("listMatriculasVehiculos").contents()).containsExactly(matriculas);
     }
 
 }
