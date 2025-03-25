@@ -27,15 +27,21 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>org.easytesting</groupId>
-			<artifactId>fest-swing</artifactId>
-			<version>1.2.1</version>
-			<scope>test</scope>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		    <version>2.2.224</version>
+		    <scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<version>5.9.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-swing-junit</artifactId>
+			<version>3.9.2</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -47,15 +53,16 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.3.0</version>
-				<configuration>
-					<archive>
-					<manifest>
-						<mainClass>es.unican.is2.Runner</mainClass>
-					</manifest>
-					</archive>
-				</configuration>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>3.5.2</version>
+				<executions>
+					<execution>
+					<goals>
+						<goal>integration-test</goal>
+						<goal>verify</goal>
+					</goals>
+				</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -67,7 +74,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>es.unican.is2.Runner</mainClass>
+							<mainClass>es.unican.is2.impuestocirculacionmain.Runner</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -76,7 +83,7 @@
 						<id>make-assembly</id>
 						<phase>package</phase>
 						<goals>
-							
+							<goal>single</goal>
 						</goals>
 					</execution>
 				</executions>
