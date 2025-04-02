@@ -11,22 +11,25 @@ public class ListaOrdenada<E extends Comparable<E>> implements IListaOrdenada<E>
 	private List<E> lista = new ArrayList<E>();
 
 	public E get(int indice) {
-		return lista.get(indice);
+		if (indice < 0 || indice >= lista.size()) {
+            throw new IndexOutOfBoundsException("Índice fuera de rango: " + indice);
+        }
+        return lista.get(indice);
 	}
 
 	public void add(E elemento) {
 		int indice = 0;
-		if (lista.size() != 0) {
-			while (indice < lista.size() && elemento.compareTo(lista.get(indice)) < 0) {
+		while (indice < lista.size() && elemento.compareTo(lista.get(indice)) > 0) {
 				indice++;
-			}
 		}
 		lista.add(indice, elemento);
 	}
 
 	public E remove(int indice) {
-		E borrado = lista.remove(indice);
-		return borrado;
+		if (indice < 0 || indice >= lista.size()) {
+            throw new IndexOutOfBoundsException("Índice fuera de rango: " + indice);
+        }
+        return lista.remove(indice);
 	}
 
 	public int size() {
@@ -34,8 +37,6 @@ public class ListaOrdenada<E extends Comparable<E>> implements IListaOrdenada<E>
 	}
 
 	public void clear() {
-		for (int i=1; i<lista.size(); i++) {
-			lista.remove(i);
-		}
+		lista.clear();
 	}
 }
