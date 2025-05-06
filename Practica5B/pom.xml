@@ -1,0 +1,22 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>es.unican.is2</groupId>
+  <artifactId>practica5b</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <dependencies>
+  	<dependency>
+		<groupId>org.junit.jupiter</groupId>
+		<artifactId>junit-jupiter</artifactId>
+		<version>5.9.2</version>
+		<scope>test</scope>
+	</dependency>
+  </dependencies>
+  
+  <properties>
+  	<maven.compiler.source>17</maven.compiler.source>
+  	<maven.compiler.target>17</maven.compiler.target>
+  	<sonar.token>sqa_d36da91b9d183e4405cf0b9aa3633562c4c86e8d</sonar.token>
+  	<sonar.host.url>http://localhost:9000</sonar.host.url>
+  </properties>
+</project>
